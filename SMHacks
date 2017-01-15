@@ -1,0 +1,70 @@
+<html>
+
+	<style>
+			body{
+	        background-color: #BFE7FE
+	      }
+	      h1 {
+	        color: #001927
+	     }
+
+	      h1 {
+	      	text-align:center;
+	      } 
+
+	      }
+
+	       input{
+        		padding: 10px;
+		        border-radius: 4px;
+		      }
+		   button {
+		        font-size: 20px;
+
+		      }
+      	  }
+
+	     
+	</style>
+	
+	<head>
+
+		<title>Weather</title>
+		<script>
+			fetch("http://api.wunderground.com/api/430fcd3668a06090/conditions/q/CA/San_Francisco.json")
+				.then(function (resp) {
+					return resp.json()
+				})
+				.then(function (data) {
+					document.querySelector("h1#content").innerHTML = data.current_observation.temperature_string;
+				});
+		</script>
+	</head>
+
+	<body>
+		<p>
+
+			<h1 id="content" style="font-family:verdana">
+				What clothing should you wear based on the weather?
+			</h1>
+		
+
+			<h1 style="text-align:center">
+
+				<div align="center">
+					<a href="http://www.accuweather.com/en/us/san-mateo-ca/94401/weather-forecast/337235" class="aw-widget-legal">
+	<!--
+	By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at http://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at http://www.accuweather.com/en/privacy.
+	-->
+					</a><div id="awcc1484442897334" class="aw-widget-current"  data-locationkey="337235" data-unit="f" data-language="en-us" data-useip="false" data-uid="awcc1484442897334"></div><script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
+				</div>
+			</h1>
+
+		</p>
+
+
+		</p>
+
+	</body>
+
+</html>
