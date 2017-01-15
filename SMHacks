@@ -1,78 +1,241 @@
 <html>
 
-	<style>
-			body{
-	        background-color: #BFE7FE
-	      }
-	      h1 {
-	        color: #001927
-	     }
-
-	      h1 {
-	      	text-align:center;
-	      } 
-
-	      }
-
-	       input{
-        		padding: 10px;
-		        border-radius: 4px;
-		      }
-		   button {
-		        font-size: 20px;
-
-		      }
-      	  }
-
+		<style>
+		body{
+	        background-color: #E7F8FE;
+	        font-family: "TrebuchetMS";
+	    }
+	    h1 {
+	        color: #001927;
+	        font-size:70px;
+	        text-align:center;
+	    }
+	    h3 {
+	      	text-align: center;
+	      	font-size:32px;
+	      	font-weight:normal;
+	    }
+	    input{
+        	padding: 10px;
+	        border-radius: 4px;
+		}
+		button {
+		    font-size: 20px;
+		}
 	     
 	</style>
+
 	
 	<head>
 
-		<title>Weather</title>
+		<title>What to Wear with the Weather</title>
 		
 	</head>
 
 	<body>
 
-		<h1 style="font-family:Georgia">
-			What clothing should you wear based on the weather?
-		</h1>
-		
-
-		<h1 style="text-align:center">
-
-			<div align="center">
-				<a href="http://www.accuweather.com/en/us/san-mateo-ca/94401/weather-forecast/337235" class="aw-widget-legal">
-	<!--
-	By accessing and/or using this code snippet, you agree to AccuWeather’s terms and conditions (in English) which can be found at http://www.accuweather.com/en/free-weather-widgets/terms and AccuWeather’s Privacy Statement (in English) which can be found at http://www.accuweather.com/en/privacy.
-	-->
-				</a><div id="awcc1484442897334" class="aw-widget-current"  data-locationkey="337235" data-unit="f" data-language="en-us" data-useip="false" data-uid="awcc1484442897334"></div><script type="text/javascript" src="http://oap.accuweather.com/launch.js"></script>
-			</div>
+		<h1>
+			What should you wear today?
 		</h1>
 
-		<p style="font-family:Georgia">
-			The current temperature is <span id="content"></span>.
+		<hr/>
+
+
+		<p>
+			<h3>
+			The current temperature in <span id="content"></span>.
+			</h3>
 		</p>
 		<p>
-			You should wear: <span id="wtw"></span>
+			<h3 style = "text-align: left">
+			You should wear:
+			<ul>
+			<li id="1">
+			</li>
+			<li id="2">
+			</li>
+			<li id="3">
+			</li>
+			<li id="4">
+			</li>
+			<li id="5">
+			</li>
+			<li id="6">
+			</li>
+			</ul>
+			</h3>
+		</p>
+
+
+		<p>
+			<h1>
+				<img src="https://clipartion.com/wp-content/uploads/2015/11/happy-cloud-sun-clipart-free-clip-art-images.png" height="100" width="150" /> <!-- Sun w/ cloud -->
+				<img src="http://content.mycutegraphics.com/graphics/flip-flop/blue-flip-flops.png" height= "100" width= "100" /> <!-- flip flops -->	
+				<img src="http://www.clipartkid.com/images/204/scarf-and-hat-clip-art-snowman-wearing-purple-scarf-and-hat-image-a9M4nm-clipart.png" height="100" width="100" /> <!-- snowman -->
+				<img src="http://content.mycutegraphics.com/graphics/umbrella/pink-polka-dot-umbrella.png" height= "100" width="90" /> <!-- umbrella -->
+				<img src="http://images.clipartpanda.com/storm-clipart-storm-symbol-clipart-1.jpg" height= "100" width= "100" /> <!-- cloud w/ lightning -->
+				<img src="http://worldartsme.com/images/t-shirt-purple-clipart-1.jpg" height= "100" width= "100" /> <!-- shirt -->
+				<img src="http://images.clipartpanda.com/smiling-sun-clipart-smiling-hot-sun.png" height= "100" width= "100" /> <!-- sun-->
+				<img src="http://content.mycutegraphics.com/graphics/clothing/baseball-hat-green.png" height= "100" width= "110" /> <!-- hat -->
+				<img src="https://openclipart.org/image/2400px/svg_to_png/178744/Cute-Rain-Cloud.png" height="100" width="100" /> <!-- cloud w/ rain -->
+				<img src="http://www.clipartkid.com/images/68/free-to-use-public-domain-jacket-clip-art-APkuOU-clipart.png" height= "100" width= "100" /> <!-- jacket -->
+			</h1>
 		</p>
 
 	</body>
-	<script>
-			state = "CA";
-			city = "San_Mateo";
-			tempStr = "0";
 
-			fetch("http://api.wunderground.com/api/430fcd3668a06090/conditions/q/" + state + "/" + city + ".json")
+	<script>
+		alert("Welcome to Weather Watcher! We can help you decide what to wear based on the weather!")
+		var country = prompt("What country are you in?");
+		var state = "";
+		var city = "";
+		var inUS = false;
+
+		/**
+		Checks/fixes capitalization
+		@param word the word or phrase whose capitalization you want to check/fix
+		@return a string consisting of the original word or phrase with proper capitalization (ie. the first letter of each word)
+		*/
+		var capFix = function(word){
+			word = word.toLowerCase();
+			var words = word.split(" ");
+			for(var i = 0; i < words.length; i++){
+				var firstLet = words[i].substring(0, 1);
+				words[i] = firstLet.toUpperCase() + words[i].substring(1, words[i].length);
+			}
+			var final = "";
+			for(var i = 0; i < words.length; i++){
+				final = final + words[i] + " ";
+			}
+			return final.substring(0, final.length - 1);
+		};
+
+		//gets user input for country, state and city
+		country = country.toUpperCase();
+		if ( country == "USA" || country == "US"){
+			inUS = true;
+			state = prompt("What state are you in? Please enter the abbrevieation.").toUpperCase();
+		}
+		else{
+			country = capFix(country);
+		}
+		city = capFix(prompt("What city are you in?"));
+
+		//clothes variables initialized
+		shirt = "";
+		pants = "";
+		jacket = "";
+		accessory = "";
+		socks = "";
+		shoes = "";
+
+		/**
+		Checks to see if humidity is a factor.
+		If so, sets appropriate clothing variables to appropriate things.
+		Only used for temperatures above 76 degrees F.
+		@param humidity the % humidity of the user's current location (taken from the weather website)
+		*/
+		var humidityCheck = function(humidity){
+			if(humidity > 80){
+					shirt = "a lightweight, short-sleeve shirt or a tank top";
+					pants = "shorts or a skirt";
+					jacket = "no jacket";
+					socks = "no socks";
+					shoes = "sandals or flip flops";
+				}
+		}
+
+		/**
+		Chooses and suggests the appropriate clothing based on temperature, humidity, wind, and rain.
+		Sets appropriate clothing variables to appropriate things.
+		Makes decisions based on weather data from the Weather Underground for each user's location (which they enter).
+		@param state_country the state (in the US) or country (if not the US) where the user is located; used to pull appropriate data from weather website
+		@param city2 the city where the user is located; used to pull appropriate data from weather website
+		*/
+		var chooseClothing = function(state_country, city2){
+			fetch("http://api.wunderground.com/api/430fcd3668a06090/conditions/q/" + state_country + "/" + city2 + ".json")
 				.then(function (resp) {
 					return resp.json()
 				})
 				.then(function (data) {
-					tempStr = data.current_observation.temp_f;
-					document.querySelector("#content").innerHTML = tempStr;
-					temp = parseFloat(tempStr, 10);
+					tempShow = data.current_observation.temperature_string;
+					humidity = data.current_observation.relative_humidity;
+					windSpd = data.current_observation.wind_mph;
+					windDir = data.current_observation.wind_dir;
+					weather = data.current_observation.weather.toLowerCase();
+					document.querySelector("#content").innerHTML = city2+", "+state_country+" is "+tempShow+" with "+humidity+" humidity and a "+windSpd+" mph wind blowing "+windDir+". Forecast: "+weather
+
+					temp = parseFloat(data.current_observation.temp_f, 10);
+
+					if (temp <= 32){
+						shirt = "a long-sleeve shirt";
+						pants = "snow pants";
+						jacket = "a sweater or a down jacket";
+						accessory = "a scarf, a warm hat, or gloves";
+						socks = "knee-high or fuzzy socks";
+						shoes = "boots or snow boots";
+					}
+					else if (temp < 56){
+						shirt = "a long-sleeve shirt";
+						pants = "jeans or sweats";
+						jacket = "a sweater, a down jacket, or a hoodie";
+						accessory = "a scarf";
+						socks = "knee-high or fuzzy socks";
+						shoes = "boots or tennis shoes";
+					}
+					else if (temp < 66){
+						shirt = "a short-sleeve shirt";
+						pants = "jeans, capris, or a skirt";
+						jacket = "a sweater or a hoodie";
+						accessory = "a scarf";
+						socks = "ankle socks, crew socks, or tights";
+						shoes = "tennis shoes or boots";
+					}
+					else if (temp < 76){
+						shirt = "a short-sleeve shirt";
+						pants = "jeans or capris";
+						jacket = "a lightweight jacket";
+						accessory = "sunglasses";
+						socks = "ankle, thin, or crew socks";
+						shoes = "sandals or tennis shoes";
+						humidityCheck(parseFloat(humidity.substring(0,2), 10));
+					}
+					else{
+						shirt = "a lightweight, short-sleeve shirt or a tank top";
+						pants = "shorts, capris, or a skirt";
+						jacket = "no jacket";
+						accessory = "sunglasses";
+						socks = "ankle or thin socks";
+						shoes = "sandals, flip flops, or tennis shoes";
+						humidityCheck(parseFloat(humidity.substring(0,2), 10));
+					}
+					wind = parseFloat(data.current_observation.wind_mph, 10);
+					if(wind > 25){
+						jacket = "a windbreaker";
+					}
+					if(weather.includes("rain")){
+						jacket = "a raincoat";
+						accessory = "an umbrella, " + accessory;
+						shoes = "rain boots";
+					}
+					if(weather.includes("snow")){
+						jacket = "a ski jacket";
+						accessory = "a scarf, a warm hat, and gloves";
+						shoes = "snow boots";
+					}
+
+					var list = [shirt, pants, socks, shoes, jacket, accessory];
+
+					for(var i = 0; i < list.length; i++) {
+						document.getElementById((i+1).toString()).innerHTML = list[i];
+					}
+
 				});
+		}
+
+		//actually chooses the clothing based on user's given location
+		if(inUS){chooseClothing(state, city);} else{chooseClothing(country, city);}
+
 		</script>
 
 </html>
