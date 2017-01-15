@@ -153,7 +153,7 @@
 		@param city2 the city where the user is located; used to pull appropriate data from weather website
 		*/
 		var chooseClothing = function(state_country, city2){
-			fetch("http://api.wunderground.com/api/430fcd3668a06090/conditions/q/" + state_country + "/" + city2 + ".json")
+			fetch("https://api.wunderground.com/api/430fcd3668a06090/conditions/q/" + state_country + "/" + city2 + ".json")
 				.then(function (resp) {
 					return resp.json()
 				})
