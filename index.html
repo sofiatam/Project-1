@@ -70,15 +70,15 @@
 		<p>
 			<h1>
 				<img src="https://clipartion.com/wp-content/uploads/2015/11/happy-cloud-sun-clipart-free-clip-art-images.png" height="100" width="150" /> <!-- Sun w/ cloud -->
-				<img src="https://content.mycutegraphics.com/graphics/flip-flop/blue-flip-flops.png" height= "100" width= "100" /> <!-- flip flops -->	
-				<img src="https://www.clipartkid.com/images/204/scarf-and-hat-clip-art-snowman-wearing-purple-scarf-and-hat-image-a9M4nm-clipart.png" height="100" width="100" /> <!-- snowman -->
-				<img src="https://content.mycutegraphics.com/graphics/umbrella/pink-polka-dot-umbrella.png" height= "100" width="90" /> <!-- umbrella -->
-				<img src="https://images.clipartpanda.com/storm-clipart-storm-symbol-clipart-1.jpg" height= "100" width= "100" /> <!-- cloud w/ lightning -->
-				<img src="https://worldartsme.com/images/t-shirt-purple-clipart-1.jpg" height= "100" width= "100" /> <!-- shirt -->
-				<img src="https://images.clipartpanda.com/smiling-sun-clipart-smiling-hot-sun.png" height= "100" width= "100" /> <!-- sun-->
-				<img src="https://content.mycutegraphics.com/graphics/clothing/baseball-hat-green.png" height= "100" width= "110" /> <!-- hat -->
+				<img src="http://content.mycutegraphics.com/graphics/flip-flop/blue-flip-flops.png" height= "100" width= "100" /> <!-- flip flops -->	
+				<img src="http://www.clipartkid.com/images/204/scarf-and-hat-clip-art-snowman-wearing-purple-scarf-and-hat-image-a9M4nm-clipart.png" height="100" width="100" /> <!-- snowman -->
+				<img src="http://content.mycutegraphics.com/graphics/umbrella/pink-polka-dot-umbrella.png" height= "100" width="90" /> <!-- umbrella -->
+				<img src="http://images.clipartpanda.com/storm-clipart-storm-symbol-clipart-1.jpg" height= "100" width= "100" /> <!-- cloud w/ lightning -->
+				<img src="http://worldartsme.com/images/t-shirt-purple-clipart-1.jpg" height= "100" width= "100" /> <!-- shirt -->
+				<img src="http://images.clipartpanda.com/smiling-sun-clipart-smiling-hot-sun.png" height= "100" width= "100" /> <!-- sun-->
+				<img src="http://content.mycutegraphics.com/graphics/clothing/baseball-hat-green.png" height= "100" width= "110" /> <!-- hat -->
 				<img src="https://openclipart.org/image/2400px/svg_to_png/178744/Cute-Rain-Cloud.png" height="100" width="100" /> <!-- cloud w/ rain -->
-				<img src="https://www.clipartkid.com/images/68/free-to-use-public-domain-jacket-clip-art-APkuOU-clipart.png" height= "100" width= "100" /> <!-- jacket -->
+				<img src="http://www.clipartkid.com/images/68/free-to-use-public-domain-jacket-clip-art-APkuOU-clipart.png" height= "100" width= "100" /> <!-- jacket -->
 			</h1>
 		</p>
 
@@ -153,7 +153,7 @@
 		@param city2 the city where the user is located; used to pull appropriate data from weather website
 		*/
 		var chooseClothing = function(state_country, city2){
-			fetch("https://api.wunderground.com/api/430fcd3668a06090/conditions/q/" + state_country + "/" + city2 + ".json")
+			fetch("http://api.wunderground.com/api/430fcd3668a06090/conditions/q/" + state_country + "/" + city2 + ".json")
 				.then(function (resp) {
 					return resp.json()
 				})
